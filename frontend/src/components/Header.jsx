@@ -101,7 +101,7 @@ export default function Header() {
               <Link to="/login" className="font-bold text-gray-600 hover:text-gray-900 text-sm tracking-wide transition-colors">
                 Entrar
               </Link>
-              <Link to="/login" className="bg-gray-900 hover:bg-black shadow-md hover:shadow-lg px-6 py-2.5 rounded-full font-bold text-white text-sm tracking-wide transition-all hover:-translate-y-0.5 duration-300">
+              <Link to="/login?mode=signup" className="bg-gray-900 hover:bg-black shadow-md hover:shadow-lg px-6 py-2.5 rounded-full font-bold text-white text-sm tracking-wide transition-all hover:-translate-y-0.5 duration-300">
                 Criar Conta
               </Link>
             </div>

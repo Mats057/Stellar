@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ticketService } from '../services';
-import { Ticket, QrCode } from 'lucide-react';
+import { Ticket } from 'lucide-react';
 import { motion } from 'framer-motion';
+import QRCodeModule from 'react-qr-code';
+
+const QRCode = QRCodeModule.default || QRCodeModule;
 
 export default function Purchases() {
   const navigate = useNavigate();
@@ -66,7 +69,16 @@ export default function Purchases() {
           </motion.div>
       ) : (
           <div className="space-y-10">
-              {tickets.map((ticket, i) => (
+              {tickets.map((ticket, i) => {
+                  const qrPayload = JSON.stringify({
+                      passenger: user?.name,
+                      seat: `A-${ticket.id.slice(0, 4).toUpperCase()}`,
+                      destination: ticket.travel?.destination?.name,
+                      departure: new Date(ticket.travel?.departure_time).toLocaleString(),
+                      arrival: new Date(ticket.travel?.arrival_time).toLocaleString()
+                  });
+
+                  return (
                   <motion.div 
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -75,11 +87,13 @@ export default function Purchases() {
                     className="group relative flex md:flex-row flex-col hover:shadow-xl border border-gray-100 overflow-hidden transition-all hover:-translate-y-1 duration-500 glass-panel"
                   >
                       <div className="relative flex md:flex-col justify-center items-center bg-linear-to-br from-indigo-500 to-blue-500 p-8 w-full md:w-56">
-                          <QrCode className="z-10 relative w-24 h-24 text-white" />
-                          <div className="z-10 relative mt-6 text-center">
-                              <span className="block mb-2 font-bold text-[10px] text-indigo-200 uppercase tracking-[0.2em]">Chave Mestra</span>
+                          <div className="z-10 relative bg-white p-2 rounded-xl">
+                              <QRCode value={qrPayload} size={100} level="M" />
+                          </div>
+                          <div className="z-10 relative mt-4 text-center">
+                              <span className="block mb-1 font-bold text-[10px] text-indigo-200 uppercase tracking-[0.2em]">Assento</span>
                               <span className="block font-mono font-bold text-white text-lg tracking-widest">
-                                  {ticket.id.slice(0, 8).toUpperCase()}
+                                  A-{ticket.id.slice(0, 4).toUpperCase()}
                               </span>
                           </div>
                       </div>
@@ -122,7 +136,7 @@ export default function Purchases() {
                       <div className="hidden md:block top-1/2 -left-6 absolute bg-slate-50 border-gray-100 border-r rounded-full w-12 h-12 -translate-y-1/2 transform"></div>
                       <div className="hidden md:block top-1/2 -right-6 absolute bg-slate-50 border-gray-100 border-l rounded-full w-12 h-12 -translate-y-1/2 transform"></div>
                   </motion.div>
-              ))}
+              )})}
           </div>
       )}
     </div>

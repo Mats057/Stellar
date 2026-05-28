@@ -65,9 +65,9 @@ export default function Home() {
                 </span>
                 Exploração disponível.
               </div>
-              <h1 className="mb-8 font-syne font-black text-gray-900 text-5xl md:text-7xl leading-[1] tracking-tighter">
+              <h1 className="mb-8 font-syne font-black text-gray-900 text-5xl md:text-7xl leading-none tracking-tighter">
                 A exploração <br className="hidden md:block"/>
-                <span className="bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent">
+                <span className="bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 text-transparent">
                   não tem limites.
                 </span>
               </h1>

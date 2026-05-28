@@ -17,8 +17,8 @@ const Button = forwardRef(({ children, className = '', variant = 'primary', load
       {...props}
     >
       {loading ? (
-        <span className="flex items-center justify-center gap-3">
-          <div className="animate-[spin_2s_linear_infinite] rounded-full h-5 w-5 border-t-2 border-b-2 border-current opacity-70"></div>
+        <span className="flex justify-center items-center gap-3">
+          <div className="opacity-70 border-current border-t-2 border-b-2 rounded-full w-5 h-5 animate-[spin_2s_linear_infinite]"></div>
           {children}
         </span>
       ) : children}

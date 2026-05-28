@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { authService } from '../services';
 import { RocketIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,7 +9,9 @@ import GlassPanel from '../components/ui/GlassPanel';
 
 export default function LoginSignup() {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true);
+  const [searchParams] = useSearchParams();
+  const mode = searchParams.get('mode');
+  const isLogin = mode !== 'signup';
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -124,8 +126,8 @@ export default function LoginSignup() {
             <button 
                type="button" 
                onClick={() => {
-                   setIsLogin(!isLogin);
                    setError('');
+                   navigate(isLogin ? '/login?mode=signup' : '/login');
                }}
                className="ml-2 focus:outline-none text-indigo-600 hover:text-indigo-800 decoration-2 underline underline-offset-4 transition-colors"
             >
