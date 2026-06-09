@@ -1,0 +1,23 @@
+# ===========================================================
+#  Stellar - arquivos que NAO devem ir para o repositorio
+# ===========================================================
+
+# --- Artefatos de build (.NET) ---
+[Bb]in/
+[Oo]bj/
+*.user
+
+# --- Node / front-end ---
+node_modules/
+dist/
+
+# --- Ferramentas locais e configuracoes de IDE ---
+.claude/
+.vs/
+.vscode/
+*.suo
+
+# --- Sistema operacional ---
+.DS_Store
+Thumbs.db
+desktop.ini

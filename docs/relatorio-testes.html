@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Relatorio de Testes - Stellar API</title>
+<style>
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#1e293b;margin:0;padding:32px}
+  .wrap{max-width:920px;margin:0 auto}
+  .head{background:linear-gradient(135deg,#4f46e5,#2563eb);color:#fff;padding:28px 32px;border-radius:18px;margin-bottom:20px}
+  .head h1{margin:0 0 6px;font-size:26px}
+  .head p{margin:2px 0;opacity:.9;font-size:14px}
+  .summary{background:#fff;border-radius:14px;padding:16px 24px;margin-bottom:20px;font-weight:700;font-size:16px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+  .card{background:#fff;border-radius:14px;padding:18px 24px;margin-bottom:18px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+  .card h2{font-size:17px;margin:0 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .tcid{background:#4f46e5;color:#fff;padding:3px 10px;border-radius:8px;font-size:13px}
+  .area{background:#e0e7ff;color:#3730a3;padding:2px 9px;border-radius:8px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+  .badge{color:#fff;padding:3px 12px;border-radius:999px;font-size:12px;margin-left:auto}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;vertical-align:top;padding:7px 10px;border-bottom:1px solid #eef2f7;font-size:14px}
+  th{width:140px;color:#475569;font-weight:600}
+  pre{background:#0f172a;color:#a5f3fc;padding:12px;border-radius:8px;overflow-x:auto;font-size:12.5px;margin:0;white-space:pre-wrap;word-break:break-word}
+  code{background:#f1f5f9;padding:2px 6px;border-radius:6px;font-size:13px}
+</style></head><body><div class="wrap">
+  <div class="head">
+    <h1>Relatorio de Testes &mdash; Stellar API</h1>
+    <p>Projeto Stellar (Global Solution 2026/1) &middot; Backend C# / ASP.NET Core + EF Core + PostgreSQL</p>
+    <p>Executado em: 08/06/2026 23:45:31 &middot; Ambiente: http://localhost:5009</p>
+  </div>
+  <div class="summary">Resultado: 15 de 15 casos PASSARAM.</div>
+    <section class="card">
+    <h2><span class="tcid">CT-01</span> Listar todas as viagens <span class="area">Viagens</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>O usuario abre a home; o sistema lista todas as viagens com empresa, destino e assentos vendidos.</td></tr>
+      <tr><th>Requisicao</th><td><code>GET http://localhost:5009/api/travels</code></td></tr>
+      <tr><th>Entrada</th><td><em>(sem corpo de requisicao)</em></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 200 com lista de viagens; cada item traz company, destination e tickets_sold.</td></tr>
+      <tr><th>Status esperado</th><td><code>200</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">200</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>{
+    "value":  [
+                  {
+                      "id":  "70000000-0000-0000-0000-000000000002",
+                      "name":  "Especial de Fim de Semana Lunar",
+                      "price":  15000.00,
+                      "capacity":  200,
+                      "company_id":  "c0000000-0000-0000-0000-000000000003",
+                      "destination_id":  "d0000000-0000-0000-0000-000000000004",
+                      "description":  "Passe o fim de semana na Lua. Rápido, fácil e acessível.",
+                      "departure_time":  "2026-06-10T10:00:00",
+                      "arrival_time":  "2026-06-13T10:00:00",
+                      "tickets_sold":  5,
+                      "company":  {
+                                      "id":  "c0000000-0000-0000-0000-000000000003",
+                                      "name":  "Virgin Galactic Espaço Profundo",
+                                      "description":  "Estilo e experiência."
+                                  },
+                      "destination":  {
+                                          "id":  "d0000000-0000-0000-0000-000000000004",
+                                          "name":  "Estação Lunar Alpha",
+                                          "description":  "Uma escapada rápida! Desfrute de recreação em baixa gravidade no vizinho mais próximo da Terra.",
+                                          "distance_earth":  384400
+                                      }
+                  },
+                  {
+                      "id":  "70000000-0000-0000-0000-000000000001",
+                      "name":  "Expresso Marte Rota A",
+                      "price":  250000.00,
+                      "capacity":  50,
+                      "company_id":  "c0000000-0000-0000-0000-000000000001",
+                      "destination_id":  "d0000000-0000-0000-0000-000000000001",
+                      "description":  "Voo direto para Marte utilizando a recém-reformada Starship.",
+                      "departure_time":  "2026-08-15T08:00:00",
+                      "arrival_time":  "2026-11-20T14:00:00",
+                      "tickets_sold":  0,
+                      "company":  {
+                                      "id":  "c0000000-0000-0000-0000-000000000001",
+                                      "name":  "SpaceX Interplanetária",
+                                      "description":  "Os pioneiros das viagens espaciais modernas."
+                                  },
+                      "destination":  {
+                                          "id":  "d0000000-0000-0000-0000-000000000001",
+                                          "name":  "Marte (Nova Colônia Texas)",
+                                          "description":  "Experimente as dunas vermelhas e o majestoso Olympus Mons.",
+                                          "distance_earth":  225000000
+                                      }
+                  },
+                  {
+                      "id":  "70000000-0000-0000-0000-000000000003",
+                      "name":  "Explorador de Titã",
+                      "price":  850000.00,
+                      "capacity":  20,
+                      "company_id":  "c0000000-0000-0000-0000-000000000002",
+                      "destination_id":  "d0000000-0000-0000-0000-000000000002",
+                      "description":  "Um longo cruzeiro de luxo para os serenos lagos de Titã.",
+                      "departure_time":  "2027-01-05T00:00:00",
+                      "arrival_time":  "2029-05-15T12:00:00",
+                      "tickets_sold":  0,
+                      "company":  {
+                                      "id":  "c0000000-0000-0000-0000-000000000002",
+                                      "name":  "Fronteiras Blue Origin",
+                                      "description":  "Conforto e luxo para o viajante espacial exigente."
+                                  },
+                      "destination":  {
+                                          "id":  "d0000000-0000-0000-0000-000000000002",
+                                          "name":  "Titã (Lua de Saturno)",
+                                          "description":  "Explore lagos de metano e céus laranjas em nossas cidades-domo de luxo.",
+                                          "distance_earth":  1200000000
+                                      }
+                  }
+              ],
+    "Count":  3
+}</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-02</span> Buscar viagens por texto <span class="area">Viagens</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>O usuario digita "marte" na busca; o sistema filtra por nome da viagem, empresa ou destino.</td></tr>
+      <tr><th>Requisicao</th><td><code>GET http://localhost:5009/api/travels?search=marte</code></td></tr>
+      <tr><th>Entrada</th><td><em>(sem corpo de requisicao)</em></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 200 retornando apenas as viagens que casam com "marte".</td></tr>
+      <tr><th>Status esperado</th><td><code>200</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">200</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>{
+    "value":  [
+                  {
+                      "id":  "70000000-0000-0000-0000-000000000001",
+                      "name":  "Expresso Marte Rota A",
+                      "price":  250000.00,
+                      "capacity":  50,
+                      "company_id":  "c0000000-0000-0000-0000-000000000001",
+                      "destination_id":  "d0000000-0000-0000-0000-000000000001",
+                      "description":  "Voo direto para Marte utilizando a recém-reformada Starship.",
+                      "departure_time":  "2026-08-15T08:00:00",
+                      "arrival_time":  "2026-11-20T14:00:00",
+                      "tickets_sold":  0,
+                      "company":  {
+                                      "id":  "c0000000-0000-0000-0000-000000000001",
+                                      "name":  "SpaceX Interplanetária",
+                                      "description":  "Os pioneiros das viagens espaciais modernas."
+                                  },
+                      "destination":  {
+                                          "id":  "d0000000-0000-0000-0000-000000000001",
+                                          "name":  "Marte (Nova Colônia Texas)",
+                                          "description":  "Experimente as dunas vermelhas e o majestoso Olympus Mons.",
+                                          "distance_earth":  225000000
+                                      }
+                  }
+              ],
+    "Count":  1
+}</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-03</span> Detalhar uma viagem existente <span class="area">Viagens</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>O usuario abre os detalhes de uma viagem valida pelo seu id.</td></tr>
+      <tr><th>Requisicao</th><td><code>GET http://localhost:5009/api/travels/70000000-0000-0000-0000-000000000001</code></td></tr>
+      <tr><th>Entrada</th><td><em>(sem corpo de requisicao)</em></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 200 com os dados completos da viagem (com company e destination).</td></tr>
+      <tr><th>Status esperado</th><td><code>200</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">200</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>{
+    "id":  "70000000-0000-0000-0000-000000000001",
+    "name":  "Expresso Marte Rota A",
+    "price":  250000.00,
+    "capacity":  50,
+    "company_id":  "c0000000-0000-0000-0000-000000000001",
+    "destination_id":  "d0000000-0000-0000-0000-000000000001",
+    "description":  "Voo direto para Marte utilizando a recém-reformada Starship.",
+    "departure_time":  "2026-08-15T08:00:00",
+    "arrival_time":  "2026-11-20T14:00:00",
+    "tickets_sold":  0,
+    "company":  {
+                    "id":  "c0000000-0000-0000-0000-000000000001",
+                    "name":  "SpaceX Interplanetária",
+                    "description":  "Os pioneiros das viagens espaciais modernas."
+                },
+    "destination":  {
+                        "id":  "d0000000-0000-0000-0000-000000000001",
+                        "name":  "Marte (Nova Colônia Texas)",
+                        "description":  "Experimente as dunas vermelhas e o majestoso Olympus Mons.",
+                        "distance_earth":  225000000
+                    }
+}</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-04</span> Detalhar viagem inexistente <span class="area">Viagens</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>O usuario tenta acessar um id que nao existe; o sistema deve tratar sem quebrar.</td></tr>
+      <tr><th>Requisicao</th><td><code>GET http://localhost:5009/api/travels/00000000-0000-0000-0000-000000000000</code></td></tr>
+      <tr><th>Entrada</th><td><em>(sem corpo de requisicao)</em></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 404 (Not Found), sem corpo de erro de servidor.</td></tr>
+      <tr><th>Status esperado</th><td><code>404</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">404</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>(sem corpo)</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-05</span> Criar uma nova viagem (POST) <span class="area">Viagens</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>Um operador cadastra uma nova viagem valida.</td></tr>
+      <tr><th>Requisicao</th><td><code>POST http://localhost:5009/api/travels</code></td></tr>
+      <tr><th>Entrada</th><td><pre>{
+    "departure_time":  "2027-03-01T08:00:00",
+    "capacity":  10,
+    "company_id":  "c0000000-0000-0000-0000-000000000001",
+    "name":  "Voo Teste Europa",
+    "price":  99000.5,
+    "description":  "Viagem criada no teste automatizado",
+    "destination_id":  "d0000000-0000-0000-0000-000000000001",
+    "arrival_time":  "2027-06-01T08:00:00"
+}</pre></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 201 (Created) com a viagem criada e um id gerado.</td></tr>
+      <tr><th>Status esperado</th><td><code>201</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">201</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>{
+    "id":  "b3130eba-fe1b-4079-bdf5-10b6f8e96138",
+    "name":  "Voo Teste Europa",
+    "price":  99000.5,
+    "capacity":  10,
+    "company_id":  "c0000000-0000-0000-0000-000000000001",
+    "destination_id":  "d0000000-0000-0000-0000-000000000001",
+    "description":  "Viagem criada no teste automatizado",
+    "departure_time":  "2027-03-01T08:00:00",
+    "arrival_time":  "2027-06-01T08:00:00",
+    "tickets_sold":  0,
+    "company":  {
+                    "id":  "c0000000-0000-0000-0000-000000000001",
+                    "name":  "SpaceX Interplanetária",
+                    "description":  "Os pioneiros das viagens espaciais modernas."
+                },
+    "destination":  {
+                        "id":  "d0000000-0000-0000-0000-000000000001",
+                        "name":  "Marte (Nova Colônia Texas)",
+                        "description":  "Experimente as dunas vermelhas e o majestoso Olympus Mons.",
+                        "distance_earth":  225000000
+                    }
+}</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-06</span> Rejeitar viagem invalida (validacao) <span class="area">Viagens</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>Tentativa de criar viagem sem nome e com capacity 0 deve ser barrada pela validacao.</td></tr>
+      <tr><th>Requisicao</th><td><code>POST http://localhost:5009/api/travels</code></td></tr>
+      <tr><th>Entrada</th><td><pre>{
+    "price":  100,
+    "company_id":  "c0000000-0000-0000-0000-000000000001",
+    "capacity":  0,
+    "destination_id":  "d0000000-0000-0000-0000-000000000001"
+}</pre></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 400 (Bad Request) com os erros de validacao; nada gravado.</td></tr>
+      <tr><th>Status esperado</th><td><code>400</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">400</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>(sem corpo)</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-07</span> Atualizar uma viagem (PUT) <span class="area">Viagens</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>O operador altera apenas o preco da viagem; os demais campos permanecem.</td></tr>
+      <tr><th>Requisicao</th><td><code>PUT http://localhost:5009/api/travels/b3130eba-fe1b-4079-bdf5-10b6f8e96138</code></td></tr>
+      <tr><th>Entrada</th><td><pre>{
+    "price":  88000
+}</pre></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 200 com a viagem atualizada (price = 88000).</td></tr>
+      <tr><th>Status esperado</th><td><code>200</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">200</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>{
+    "id":  "b3130eba-fe1b-4079-bdf5-10b6f8e96138",
+    "name":  "Voo Teste Europa",
+    "price":  88000,
+    "capacity":  10,
+    "company_id":  "c0000000-0000-0000-0000-000000000001",
+    "destination_id":  "d0000000-0000-0000-0000-000000000001",
+    "description":  "Viagem criada no teste automatizado",
+    "departure_time":  "2027-03-01T08:00:00",
+    "arrival_time":  "2027-06-01T08:00:00",
+    "tickets_sold":  0,
+    "company":  {
+                    "id":  "c0000000-0000-0000-0000-000000000001",
+                    "name":  "SpaceX Interplanetária",
+                    "description":  "Os pioneiros das viagens espaciais modernas."
+                },
+    "destination":  {
+                        "id":  "d0000000-0000-0000-0000-000000000001",
+                        "name":  "Marte (Nova Colônia Texas)",
+                        "description":  "Experimente as dunas vermelhas e o majestoso Olympus Mons.",
+                        "distance_earth":  225000000
+                    }
+}</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-08</span> Excluir uma viagem (DELETE) <span class="area">Viagens</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>O operador remove a viagem de teste (que nao possui tickets).</td></tr>
+      <tr><th>Requisicao</th><td><code>DELETE http://localhost:5009/api/travels/b3130eba-fe1b-4079-bdf5-10b6f8e96138</code></td></tr>
+      <tr><th>Entrada</th><td><em>(sem corpo de requisicao)</em></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 204 (No Content); a viagem deixa de existir.</td></tr>
+      <tr><th>Status esperado</th><td><code>204</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">204</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>(sem corpo)</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-09</span> Cadastrar usuario (senha com hash) <span class="area">Seguranca</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>Novo usuario se cadastra; a senha e salva como hash BCrypt e nao volta na resposta.</td></tr>
+      <tr><th>Requisicao</th><td><code>POST http://localhost:5009/api/auth/register</code></td></tr>
+      <tr><th>Entrada</th><td><pre>{
+    "email":  "teste_87bd49@stellar.com",
+    "name":  "Comandante Ada",
+    "password":  "senha123"
+}</pre></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 200 com id, name e email; SEM o campo password.</td></tr>
+      <tr><th>Status esperado</th><td><code>200</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">200</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>{
+    "id":  "55fb1269-1cc0-4d84-906b-bee1e6c4c968",
+    "name":  "Comandante Ada",
+    "email":  "teste_87bd49@stellar.com"
+}</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-10</span> Bloquear e-mail duplicado <span class="area">Seguranca</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>Tentativa de cadastrar um e-mail que ja existe deve ser rejeitada.</td></tr>
+      <tr><th>Requisicao</th><td><code>POST http://localhost:5009/api/auth/register</code></td></tr>
+      <tr><th>Entrada</th><td><pre>{
+    "email":  "teste_87bd49@stellar.com",
+    "name":  "Outro",
+    "password":  "senha123"
+}</pre></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 409 (Conflict) com mensagem de e-mail ja cadastrado.</td></tr>
+      <tr><th>Status esperado</th><td><code>409</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">409</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>(sem corpo)</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-11</span> Rejeitar senha curta (validacao) <span class="area">Seguranca</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>Cadastro com senha de menos de 6 caracteres deve falhar na validacao.</td></tr>
+      <tr><th>Requisicao</th><td><code>POST http://localhost:5009/api/auth/register</code></td></tr>
+      <tr><th>Entrada</th><td><pre>{
+    "email":  "c_teste_87bd49@stellar.com",
+    "name":  "Curto",
+    "password":  "123"
+}</pre></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 400 (Bad Request) com erro de validacao na senha.</td></tr>
+      <tr><th>Status esperado</th><td><code>400</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">400</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>(sem corpo)</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-12</span> Login com credenciais corretas <span class="area">Seguranca</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>Usuario faz login com a senha certa; o hash e verificado com sucesso.</td></tr>
+      <tr><th>Requisicao</th><td><code>POST http://localhost:5009/api/auth/login</code></td></tr>
+      <tr><th>Entrada</th><td><pre>{
+    "password":  "senha123",
+    "email":  "teste_87bd49@stellar.com"
+}</pre></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 200 com id, name e email do usuario.</td></tr>
+      <tr><th>Status esperado</th><td><code>200</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">200</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>{
+    "id":  "55fb1269-1cc0-4d84-906b-bee1e6c4c968",
+    "name":  "Comandante Ada",
+    "email":  "teste_87bd49@stellar.com"
+}</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-13</span> Bloquear login com senha errada <span class="area">Seguranca</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>Login com senha incorreta deve ser negado.</td></tr>
+      <tr><th>Requisicao</th><td><code>POST http://localhost:5009/api/auth/login</code></td></tr>
+      <tr><th>Entrada</th><td><pre>{
+    "password":  "SENHA_ERRADA",
+    "email":  "teste_87bd49@stellar.com"
+}</pre></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 401 (Unauthorized); acesso negado.</td></tr>
+      <tr><th>Status esperado</th><td><code>401</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">401</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>(sem corpo)</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-14</span> Comprar passagem (regra de negocio) <span class="area">Tickets</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>Usuario compra passagem; o sistema checa capacidade, define o preco no servidor e marca CONFIRMED.</td></tr>
+      <tr><th>Requisicao</th><td><code>POST http://localhost:5009/api/tickets</code></td></tr>
+      <tr><th>Entrada</th><td><pre>{
+    "user_id":  "55fb1269-1cc0-4d84-906b-bee1e6c4c968",
+    "travel_id":  "70000000-0000-0000-0000-000000000002"
+}</pre></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 201 com ticket CONFIRMED e price_paid = 15000 (preco do servidor).</td></tr>
+      <tr><th>Status esperado</th><td><code>201</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">201</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>{
+    "id":  "0f7a2aba-5917-4039-a8e6-83a756c82472",
+    "user_id":  "55fb1269-1cc0-4d84-906b-bee1e6c4c968",
+    "travel_id":  "70000000-0000-0000-0000-000000000002",
+    "price_paid":  15000.00,
+    "status":  "CONFIRMED",
+    "created_at":  "2026-06-08T23:45:31.870323",
+    "travel":  {
+                   "id":  "70000000-0000-0000-0000-000000000002",
+                   "name":  "Especial de Fim de Semana Lunar",
+                   "price":  15000.00,
+                   "capacity":  200,
+                   "company_id":  "c0000000-0000-0000-0000-000000000003",
+                   "destination_id":  "d0000000-0000-0000-0000-000000000004",
+                   "description":  "Passe o fim de semana na Lua. Rápido, fácil e acessível.",
+                   "departure_time":  "2026-06-10T10:00:00",
+                   "arrival_time":  "2026-06-13T10:00:00",
+                   "tickets_sold":  6,
+                   "company":  {
+                                   "id":  "c0000000-0000-0000-0000-000000000003",
+                                   "name":  "Virgin Galactic Espaço Profundo",
+                                   "description":  "Estilo e experiência."
+                               },
+                   "destination":  {
+                                       "id":  "d0000000-0000-0000-0000-000000000004",
+                                       "name":  "Estação Lunar Alpha",
+                                       "description":  "Uma escapada rápida! Desfrute de recreação em baixa gravidade no vizinho mais próximo da Terra.",
+                                       "distance_earth":  384400
+                                   }
+               }
+}</pre></td></tr>
+    </table>
+  </section>
+  <section class="card">
+    <h2><span class="tcid">CT-15</span> Historico de tickets do usuario <span class="area">Tickets</span> <span class="badge" style="background:#16a34a">PASSOU</span></h2>
+    <table>
+      <tr><th>Cenario</th><td>O usuario abre "Meus Tickets"; o sistema lista suas compras com a viagem aninhada.</td></tr>
+      <tr><th>Requisicao</th><td><code>GET http://localhost:5009/api/users/55fb1269-1cc0-4d84-906b-bee1e6c4c968/tickets</code></td></tr>
+      <tr><th>Entrada</th><td><em>(sem corpo de requisicao)</em></td></tr>
+      <tr><th>Saida esperada</th><td>HTTP 200 com a lista de tickets; cada um traz travel com destination e company.</td></tr>
+      <tr><th>Status esperado</th><td><code>200</code></td></tr>
+      <tr><th>Status obtido</th><td><strong style="color:#16a34a;font-size:16px">200</strong></td></tr>
+      <tr><th>Resposta obtida</th><td><pre>{
+    "value":  [
+                  {
+                      "id":  "0f7a2aba-5917-4039-a8e6-83a756c82472",
+                      "user_id":  "55fb1269-1cc0-4d84-906b-bee1e6c4c968",
+                      "travel_id":  "70000000-0000-0000-0000-000000000002",
+                      "price_paid":  15000.00,
+                      "status":  "CONFIRMED",
+                      "created_at":  "2026-06-08T23:45:31.870323",
+                      "travel":  {
+                                     "id":  "70000000-0000-0000-0000-000000000002",
+                                     "name":  "Especial de Fim de Semana Lunar",
+                                     "price":  15000.00,
+                                     "capacity":  200,
+                                     "company_id":  "c0000000-0000-0000-0000-000000000003",
+                                     "destination_id":  "d0000000-0000-0000-0000-000000000004",
+                                     "description":  "Passe o fim de semana na Lua. Rápido, fácil e acessível.",
+                                     "departure_time":  "2026-06-10T10:00:00",
+                                     "arrival_time":  "2026-06-13T10:00:00",
+                                     "tickets_sold":  6,
+                                     "company":  {
+                                                     "id":  "c0000000-0000-0000-0000-000000000003",
+                                                     "name":  "Virgin Galactic Espaço Profundo",
+                                                     "description":  "Estilo e experiência."
+                                                 },
+                                     "destination":  {
+                                                         "id":  "d0000000-0000-0000-0000-000000000004",
+                                                         "name":  "Estação Lunar Alpha",
+                                                         "description":  "Uma escapada rápida! Desfrute de recreação em baixa gravidade no vizinho mais próximo da Terra.",
+                                                         "distance_earth":  384400
+                                                     }
+                                 }
+                  }
+              ],
+    "Count":  1
+}</pre></td></tr>
+    </table>
+  </section>
+</div></body></html>

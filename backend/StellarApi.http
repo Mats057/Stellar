@@ -1,0 +1,136 @@
+@host = http://localhost:5009
+
+# IDs dos dados-semente (ver Data/StellarContext.cs)
+@travelLunar = 70000000-0000-0000-0000-000000000002
+@travelMarte = 70000000-0000-0000-0000-000000000001
+@companySpaceX = c0000000-0000-0000-0000-000000000001
+@destinationMarte = d0000000-0000-0000-0000-000000000001
+
+###############################################################
+# TRAVELS (viagens)
+###############################################################
+
+### 1. Listar todas as viagens (com company, destination e tickets_sold aninhados)
+GET {{host}}/api/travels
+Accept: application/json
+
+### 2. Buscar viagens por texto (destino/empresa/nome)
+GET {{host}}/api/travels?search=marte
+Accept: application/json
+
+### 3. Buscar viagem por ID (existente)
+GET {{host}}/api/travels/{{travelMarte}}
+Accept: application/json
+
+### 4. Buscar viagem por ID inexistente -> 404
+GET {{host}}/api/travels/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+### 5. Criar viagem (POST) -> 201
+# @name novaViagem
+POST {{host}}/api/travels
+Content-Type: application/json
+
+{
+  "name": "Voo Teste Europa",
+  "price": 99000.50,
+  "capacity": 10,
+  "company_id": "{{companySpaceX}}",
+  "destination_id": "{{destinationMarte}}",
+  "description": "Viagem criada via teste .http",
+  "departure_time": "2027-03-01T08:00:00",
+  "arrival_time": "2027-06-01T08:00:00"
+}
+
+### 6. Criar viagem inválida (sem nome / capacidade 0) -> 400 (validação)
+POST {{host}}/api/travels
+Content-Type: application/json
+
+{
+  "price": 100,
+  "capacity": 0,
+  "company_id": "{{companySpaceX}}",
+  "destination_id": "{{destinationMarte}}"
+}
+
+### 7. Atualizar viagem parcialmente (PUT) -> só muda o preço
+PUT {{host}}/api/travels/{{novaViagem.response.body.id}}
+Content-Type: application/json
+
+{
+  "price": 88000.00
+}
+
+### 8. Deletar viagem (DELETE) -> 204
+DELETE {{host}}/api/travels/{{novaViagem.response.body.id}}
+
+###############################################################
+# AUTH (segurança - BCrypt)
+###############################################################
+
+### 9. Cadastrar usuário (POST) -> 200 {id, name, email}
+# @name register
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Astronauta Teste",
+  "email": "astro@stellar.com",
+  "password": "senha123"
+}
+
+### 10. Cadastrar com e-mail repetido -> 409
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Outro",
+  "email": "astro@stellar.com",
+  "password": "senha123"
+}
+
+### 11. Cadastrar com senha curta -> 400 (validação)
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Curto",
+  "email": "curto@stellar.com",
+  "password": "123"
+}
+
+### 12. Login correto -> 200
+# @name login
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "astro@stellar.com",
+  "password": "senha123"
+}
+
+### 13. Login com senha errada -> 401
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "astro@stellar.com",
+  "password": "errada"
+}
+
+###############################################################
+# TICKETS (compra + histórico)
+###############################################################
+
+### 14. Comprar passagem (POST) -> 201. Usa o id do usuário cadastrado acima.
+POST {{host}}/api/tickets
+Content-Type: application/json
+
+{
+  "user_id": "{{register.response.body.id}}",
+  "travel_id": "{{travelLunar}}"
+}
+
+### 15. Histórico de tickets do usuário (GET) -> lista com travel aninhada
+GET {{host}}/api/users/{{register.response.body.id}}/tickets
+Accept: application/json
